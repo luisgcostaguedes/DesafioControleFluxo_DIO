@@ -2,39 +2,28 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Contador {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner terminal = new Scanner(System.in).useLocale(Locale.US);
 
         System.out.println("Por favor digite o primeiro número: ");
-        int numero1 = terminal.nextInt();
+        int number1 = terminal.nextInt();
         System.out.println("Por favor digite o segundo número: ");
-        int numero2 = terminal.nextInt();
+        int number2 = terminal.nextInt();
+
         try {
-            
-            contar(numero1, numero2);
-        
-        } catch (ParametrosInvalidosException e) {
-            
+            if (number1 < number2) {
+                contar(number1, number2);
+            }
+        } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
+        } finally {
+            terminal.close();
         }
-
-
     }
 
-
-
-
-    static void contar(int numero1, int numero2) throws ParametrosInvalidosException {
-        
-        if (numero1 >= numero2) {
-            throw new ParametrosInvalidosException("O segundo número deve ser maior que o primeiro.");
-        }
-        
-        int contagem = numero2 - numero1;
-        
-        for (int i = numero1; i <= numero2; i++) {
+    static void contar(int number1, int number2) {
+        for (int i = number1; i <= number2; i++) {
             System.out.println("Imprimindo o número " + i);
         }
     }
 }
-
